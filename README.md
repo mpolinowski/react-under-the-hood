@@ -103,7 +103,7 @@ const title = createElement(
 ```
 
 
-![](./ruth_01.png)
+![](./ruth_02.png)
 
 
 
