@@ -1,0 +1,17 @@
+{
+  "name": "react-under-the-hood",
+  "version": "1.0.0",
+  "description": "A look behind the curtain of React Starter Packages",
+  "main": "index.js",
+  "scripts": {
+    "start": "httpster -p 3000 -d ./dist"
+  },
+  "author": "Mike Polinowski",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
