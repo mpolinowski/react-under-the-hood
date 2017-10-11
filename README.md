@@ -14,8 +14,8 @@ React is often said to be easy to learn, but impossible to set up in an dev envi
 ### Table of Content
 
 01. [Pure React](#01-pure-react)
-02. [JSX and Babel](02-jsx-and-babel)
-03. [Webpack](03-webpack)
+02. [JSX and Babel](#02-jsx-and-babel)
+03. [Webpack](#03-webpack)
 04. []()
 
 
