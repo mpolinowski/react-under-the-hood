@@ -11,7 +11,7 @@ render(
 	<h1 id = 'title'
 			className = 'header'
 			style = {style}>
-		Hello World
+		Webpack served JSX!
 	</h1>,
 	document.getElementById('react-container')
 )

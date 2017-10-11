@@ -6,7 +6,10 @@ A look behind the curtain of React Starters like:
 * [Gatsby.js](https://github.com/gatsbyjs/gatsby)
 * [Next.js](https://github.com/zeit/next.js)
 * [Neutrino](https://neutrino.js.org)
----
+
+React is often said to be easy to learn, but impossible to set up in an dev environment. Once you start reading about it, you will be faced by an exhausting amount of choices that you have to make, before you can move on to actual coding. Starter Packages, like the ones named above, give a quick access to the React world. Let's take a look into that black box now.
+
+
 
 ### Table of Content
 
@@ -162,9 +165,124 @@ Now open index.html inside the /dist directory and change the index.js to bundle
 ```
 
 
-We are now able to write our React code in JSX as well as to use ES2015 or ES2017 syntax inside our source files. Babel will transpile them into browser-friendly code inside /dist/bundle.js.
+We are now able to write our React code in JSX as well as to use ES2015 or ES2017 syntax inside our source files. Babel will transpile them into browser-friendly code inside /dist/bundle.js. But now we don't want to do this by hand, every time we made a small edit on our page - we need an automation solution for this process.
 
 
 
 
 ## 03 Webpack
+
+Webpak is a module bundler, that enables us to create static files from our React code. We can use it to automate processes like the Babel transpiling and use it to serve our app in an hot-reloading dev-server environment.
+
+
+First we need to add a [Webpack configuration](https://webpack.js.org/guides/getting-started/) file inside the root directory - webpack.config.js:
+
+```js
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+  entry: path.resolve(__dirname, './src/index.js'),
+  devServer: {
+    contentBase: path.resolve(__dirname, './dist'),
+    port: 3000,
+    inline: true
+  },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['env']
+        }
+      }
+    }]
+  },
+  output: {
+    path: path.resolve(__dirname, './dist/assets/'),
+    filename: 'bundle.js',
+    publicPath: 'assets'
+  },
+};
+```
+
+Now we want to [install the latest version of Webpack](https://webpack.js.org/guides/installation/) together with the babel-loader & presets, as well as the Webpack Dev-Server to host our files:
+
+```
+npm install --save-dev webpack babel-loader babel-core babel-preset-env webpack-dev-server
+```
+
+We can create an npm script to start webpack from inside the repository (a global installation is not recommended). The start scripts hosts our webapp, according to the devServer configuration inside webpack.config.js. The build script takes all js files (node_modules excluded), babel-transpiles them with the babel-loader, and puts them bundled into the *./dist/assets* directory. And the watch script will watch the directories for changes and starts up the loader automatically, when we saved an edit.
+
+```
+"scripts": {
+	"start": "webpack-dev-server --open",
+	"watch": "webpack --watch",
+	"build": "webpack --config webpack.config.js"
+}
+```
+
+We can now run our build process with *npm run build* / *npm run watch* and start our devServer with *npm start*.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

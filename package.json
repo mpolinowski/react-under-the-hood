@@ -4,14 +4,18 @@
   "description": "A look behind the curtain of React Starter Packages",
   "main": "index.js",
   "scripts": {
-    "start": "httpster -p 3000 -d ./dist"
+    "start": "webpack-dev-server --open",
+    "watch": "webpack --watch",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "Mike Polinowski",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1"
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   }
 }
