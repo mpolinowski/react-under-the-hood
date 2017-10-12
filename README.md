@@ -227,15 +227,138 @@ We can create an npm script to start webpack from inside the repository (a globa
 We can now run our build process with *npm run build* / *npm run watch* and start our devServer with *npm start*.
 
 
+Let us now use Webpack to load our react dependencies - instead of linking them into our HTML page. To do this we first have to install React to the project:
+
+```
+npm install --save react react-dom
+```
+
+And to demonstrate the function of module loading, we want to use some JSON data, being loaded into our react app by Webpack:
+
+```
+npm install --save-dev json-loader
+```
+
+Lets add the JSON loader to our Webpack config file:
+
+```js
+module: {
+	rules: [
+		{
+			test: /\.js$/,
+			exclude: /(node_modules)/,
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: ['env', 'react']
+				}
+			}
+		},
+		{
+			test: /\.json$/,
+			exclude: /(node_modules)/,
+			use: {
+				loader: 'json-loader'
+			}
+		}
+	]
+},
+```
+
+And create a exciting JSON file *./src/title.json* :
+
+```json
+{
+  "data1": "first data",
+  "data2": "second data"
+}
+```
+
+And create a JSX module that uses this data in *./src/lib.js* :
+
+```js
+import React from 'react'
+import text from './titles.json'
+
+export const data1 = (
+  <h1 id='title'
+      className='header'
+      style={{backgroundColor: 'teal', color: 'purple'}}>
+    {text.data1}
+  </h1>
+)
+
+export const data2 = (
+  <h1 id='title'
+      className='header'
+      style={{backgroundColor: 'purple', color: 'teal'}}>
+    {text.data2}
+  </h1>
+)
+```
+
+We are now using the module import statement to import React from the installed React dependency, as well as our own JSON file. This is a function that is not yet integrated in JavaScript but is available thanks to Webpack and Babel. Now we can rewrite our *./src/index.js* file to receive the module that we just created:
+
+```js
+import React from 'react'
+import { render } from 'react-dom'
+import {data1, data2} from './lib'
+
+render(
+	<div>
+		{data1}
+		{data2}
+	</div>,
+	document.getElementById('react-container')
+)
+```
+
+Notice that we need to import *react-dom* here, since **render** is not part of *react*.
+
+
+![](./ruth_03.png)
 
 
 
 
+The same principle can be applied to add styles to our react app app - lets try materialize our app using the awesome [MaterializeCSS](http://materializecss.com/getting-started.html).
+
+First we want to install the Webpack loaders for the job of preprocess the source [SASS](http://sass-lang.com/guide) into proper CSS:
+
+```
+npm install --save-dev style-loader css-loader postcss-loader sass-loader
+```
+
+You will get a warning, that *sass-loader* requires another dependency called *[node-sass](https://github.com/sass/node-sass)*, which is a library that provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass. This, on the other hand, requires - **under Windows** - the installation of the [Windows Build Tools](https://github.com/felixrieseberg/windows-build-tools):
+
+
+![](./ruth_03.png)
+
+Go and get yourself a cup of coffee - as this is going to take a while ¯\\_(ツ)_\/¯
 
 
 
+```
+npm install --g --production windows-build-tools
+```
 
+once this is through, continue with node-sass:
 
+```
+npm install --save-dev node-sass
+```
+
+Then add the loaders to our Webpack config:
+
+```js
+{
+	test: /\.scss$/,
+	exclude: /(node_modules)/,
+	use: {
+		loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+	}
+}
+```
 
 
 
