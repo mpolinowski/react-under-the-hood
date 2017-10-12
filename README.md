@@ -326,7 +326,7 @@ The same principle can be applied to add styles to our react app app - lets try 
 First we want to install the Webpack loaders for the job of preprocess the source [SASS](http://sass-lang.com/guide) into proper CSS:
 
 ```
-npm install --save-dev style-loader css-loader postcss-loader sass-loader
+npm install --save-dev style-loader css-loader sass-loader
 ```
 
 You will get a warning, that *sass-loader* requires another dependency called *[node-sass](https://github.com/sass/node-sass)*, which is a library that provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass. This, on the other hand, requires - **under Windows** - the installation of the [Windows Build Tools](https://github.com/felixrieseberg/windows-build-tools):
@@ -348,7 +348,7 @@ once this is through, continue with node-sass:
 npm install --save-dev node-sass
 ```
 
-Then add the loaders to our Webpack config:
+Then add the [SASS loaders](https://webpack.js.org/loaders/sass-loader/) to our Webpack config:
 
 ```js
 {

@@ -30,9 +30,13 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /(node_modules)/,
-        use: {
-          loader: 'style-loader!css-loader!postcss-loader!sass-loader'
-        }
+        use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS
+            }]
       }
     ]
   },
