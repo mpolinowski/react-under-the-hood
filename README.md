@@ -332,7 +332,7 @@ npm install --save-dev style-loader css-loader postcss-loader sass-loader
 You will get a warning, that *sass-loader* requires another dependency called *[node-sass](https://github.com/sass/node-sass)*, which is a library that provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass. This, on the other hand, requires - **under Windows** - the installation of the [Windows Build Tools](https://github.com/felixrieseberg/windows-build-tools):
 
 
-![](./ruth_03.png)
+![](./ruth_04.png)
 
 Go and get yourself a cup of coffee - as this is going to take a while ¯\\_(ツ)_\/¯
 
