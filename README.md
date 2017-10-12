@@ -144,7 +144,7 @@ Now we need to configure Babel to transpile JSX and all latest and proposed vers
 }
 ```
 
-Now we need to install those presets as dev-dependencies:
+Now we need to install those presets as dev-dependencies **be advised**: *we later throw out babel-preset-latest babel-preset-stage-0 and replace it with [babel-preset-env](https://babeljs.io/docs/plugins/preset-env/) to work with webpack 3!* :
 
 ```
 npm install --save-dev babel-preset-react babel-preset-latest babel-preset-stage-0
@@ -195,7 +195,7 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['env']
+          presets: ['env', 'react']
         }
       }
     }]
