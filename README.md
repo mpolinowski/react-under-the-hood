@@ -50,13 +50,27 @@ Now we need to create a html page called /dist/index.html that contains the cont
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-    <meta charset="UTF-8">
-    <title>Hello World with React</title>
+  <head>
+      <meta charset="UTF-8">
+      <!-- Force latest available IE rendering engine and Chrome Frame (if installed) -->
+  	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <!-- Mobile Screen Resizing -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- HTML5 Shim for IE 6-8 -->
+      <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+	    <meta charset="UTF-8">
+	    <title>Hello World with React</title>
 </head>
 <body>
+	<!--[if lt IE 8]>
+					<section class="container">
+							Did you know that your web browser is a bit old? Some of the content on this site might not work right as a result. <a href="http://whatbrowser.org">Upgrade your browser</a> for a faster, better, and safer web experience.
+					</section>
+		<![endif]-->
     <div id="react-container"></div>
     <script src="./index.js"></script>
 </body>
@@ -321,7 +335,7 @@ Notice that we need to import *react-dom* here, since **render** is not part of 
 
 
 
-The same principle can be applied to add styles to our react app app - lets try materialize our app using the awesome [MaterializeCSS](http://materializecss.com/getting-started.html).
+The same principle can be applied to add styles to our react app app - lets try to add some [SASS](http://sass-lang.com/) to our app with the [Kraken-Sass](http://jwebcat.github.io/kraken-sass/index.html) boilerplate:
 
 First we want to install the Webpack loaders for the job of preprocess the source [SASS](http://sass-lang.com/guide) into proper CSS:
 
@@ -331,6 +345,10 @@ npm install --save-dev style-loader css-loader sass-loader
 
 You will get a warning, that *sass-loader* requires another dependency called *[node-sass](https://github.com/sass/node-sass)*, which is a library that provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass. This, on the other hand, requires - **under Windows** - the installation of the [Windows Build Tools](https://github.com/felixrieseberg/windows-build-tools):
 
+```
+npm install --g --production windows-build-tools
+```
+
 
 ![](./ruth_04.png)
 
@@ -338,11 +356,7 @@ Go and get yourself a cup of coffee - as this is going to take a while ¯\\_(ツ
 
 
 
-```
-npm install --g --production windows-build-tools
-```
-
-once this is through, continue with node-sass:
+Once this is through, continue with node-sass:
 
 ```
 npm install --save-dev node-sass
@@ -363,6 +377,32 @@ Then add the [SASS loaders](https://webpack.js.org/loaders/sass-loader/) to our 
 			}]
 }
 ```
+
+[Download the master.zip](https://github.com/jwebcat/kraken-sass/archive/master.zip) from kraken-sass and unzip the kraken.scss file (together with the lib folder - that contains all the scss components) to *./src/assets/sass*.
+
+Now we can import the [kraken-sass styles](http://jwebcat.github.io/kraken-sass/kraken-way.html) into our *./src/index.js* component:
+
+```js
+import React from 'react'
+import { render } from 'react-dom'
+import {data1, data2} from './lib'
+import './assets/sass/kraken.scss'
+
+render(
+		<div>
+			<h1>Webpack Styling</h1>
+			<h4>With Kraken-Sass Boilerplate</h4>
+	    <button className="btn btn-blue btn-block"> {data1} </button>
+			<button className="btn btn-blue btn-block"> {data2} </button>
+  	</div>,
+	document.getElementById('react-container')
+)
+```
+
+
+![](./ruth_05.png)
+
+
 
 
 

@@ -4,7 +4,7 @@
   "description": "A look behind the curtain of React Starter Packages",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --open --colors",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.config.js"
   },
