@@ -1,5 +1,5 @@
 import React from 'react'
-import text from './titles.json'
+import text from '../data/data-01.json'
 
 export const data1 = (
   <h4>

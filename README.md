@@ -404,6 +404,12 @@ render(
 
 
 
+As we can see by now - react and the Webpack/Babel dev environment is a collection of separate [JSX components](https://reactjs.org/docs/components-and-props.html) and [CSS modules](https://github.com/css-modules/css-modules) that offer isolation to our app logic and component styles. Each piece is a building block that is then imported into *./src/index.js* and bundled & transpiled into a browser-conform website. Lets clean up our folder structure accordingly (make sure to also change the relative links inside each file):
+
+
+![](./ruth_06.png)
+
+
 
 
 
