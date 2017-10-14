@@ -1,5 +1,11 @@
 import '../assets/sass/kraken.scss'
 
+import Globe from 'react-icons/lib/go/globe'
+import Landing from 'react-icons/lib/md/flight-land'
+import Heart from 'react-icons/lib/go/heart'
+import Checked from 'react-icons/lib/ti/input-checked'
+
+
 const percentToDecimal = (decimal) => {
   return ((decimal * 100) + '%')
 }
@@ -15,15 +21,18 @@ export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
     <h3>This Data is calculated inside a stateless Component</h3>
     <div className="total-contries">
       <span>{total} </span>
-      <span>total countries</span>
+      <span>total countries </span>
+      <Globe />
     </div>
     <div className="visited">
       <span>{visited} </span>
-      <span>visited countries</span>
+      <span>visited countries </span>
+      <Landing />
     </div>
     <div className="wish-list">
       <span>{wished} </span>
-      <span>countries on wishlist</span>
+      <span>countries on wishlist </span>
+      <Heart />
     </div>
     <div>
       <span>{calcTravelProgress (
@@ -31,7 +40,8 @@ export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
                 goal
             )}
       </span>
-      <span> Completion</span><br/><br/>
+      <span> Completion </span>
+      <Checked /><br/><br/>
     </div>
   </div>
 )

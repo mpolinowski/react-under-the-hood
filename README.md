@@ -19,16 +19,17 @@ React is often said to be easy to learn, but impossible to set up in an dev envi
 03. [Webpack](#03-webpack)
 	* [Loading JSON](#loading-json)
 	* [Adding SASS](#adding-sass)
-04. [React Components](#react-components)
-	* [ES6 Class Syntax](#ES6-class-syntax)
+04. [React Components](#04-react-components)
+	* [ES6 Class Syntax](#es6-class-syntax)
 	* [Stateless Functions](#stateless-functions)
+05. [Adding React-Icons](#05-adding-react-icons)
 
 
 
 
 ## 01 Pure React
 
-Create a file */dist/index.js* with the following React code:
+Create a file _/dist/index.js_ with the following React code:
 
 ```js
 const { createElement } = React
@@ -46,9 +47,9 @@ render(
 )
 ```
 
-The \<title /\> component uses the createElement function from React to create a h1 header with the css class *header*, an id *title* and a text string *Hello World*.
+The \<title /\> component uses the createElement function from React to create a h1 header with the css class _header_, an id _title_ and a text string _Hello World_.
 
-The ReactDom render function will then render it into the div container with the id *react-container*.
+The ReactDom render function will then render it into the div container with the id _react-container_.
 
 Now we need to create a html page called /dist/index.html that contains the container with named id:
 
@@ -84,7 +85,7 @@ Now we need to create a html page called /dist/index.html that contains the cont
 </html>
 ```
 
-We add React and ReactDOM directly via CDN and link our *index.js* inside the body tag.
+We add React and ReactDOM directly via CDN and link our _index.js_ inside the body tag.
 
 Now we need to put our React app onto a webserver - for testing, we will use the npm package httpster to serve our files:
 
@@ -98,7 +99,7 @@ Now start the webserver with the port and directory flag:
 httpster -p 3000 -d /e/react-under-the-hood/dist
 ```
 
-Our app can now be accessed with a webbrowser on *http://localhost:3000*
+Our app can now be accessed with a webbrowser on _http://localhost:3000_
 
 
 ![](./ruth_01.png)
@@ -147,7 +148,7 @@ render(
 )
 ```
 
-Since our webbrowser don't understand JSX, we will have to transpile it to pure Javascript using Babel - this can be quickly done with the babel-cli transpiler. Let us first initialize our node project by *npm init -y* then install the babel-cli both globally as well as a development dependency inside our project:
+Since our webbrowser don't understand JSX, we will have to transpile it to pure Javascript using Babel - this can be quickly done with the babel-cli transpiler. Let us first initialize our node project by _npm init -y_ then install the babel-cli both globally as well as a development dependency inside our project:
 
 
 
@@ -170,7 +171,7 @@ Now we need to configure Babel to transpile JSX and all latest and proposed vers
 }
 ```
 
-Now we need to install those presets as dev-dependencies **be advised**: *we later throw out babel-preset-latest babel-preset-stage-0 and replace it with [babel-preset-env](https://babeljs.io/docs/plugins/preset-env/) to work with webpack 3!* :
+Now we need to install those presets as dev-dependencies __be advised__: _we later throw out babel-preset-latest babel-preset-stage-0 and replace it with [babel-preset-env](https://babeljs.io/docs/plugins/preset-env/) to work with webpack 3!_ :
 
 ```
 npm install --save-dev babel-preset-react babel-preset-latest babel-preset-stage-0
@@ -182,7 +183,7 @@ We can now use the cli tool to transpile our JSX source file and create the brow
 babel ./src/index.js --out-file ./dist/bundle.js
 ```
 
-Now open index.html inside the /dist directory and change the index.js to bundle.js. Reloading our webserver will now show our app again. To make our life easier we will add the httpster call as our npm start script inside the package.json file - then start your webserver with *npm start*
+Now open index.html inside the /dist directory and change the index.js to bundle.js. Reloading our webserver will now show our app again. To make our life easier we will add the httpster call as our npm start script inside the package.json file - then start your webserver with _npm start_
 
 ```
 "scripts": {
@@ -240,7 +241,7 @@ Now we want to [install the latest version of Webpack](https://webpack.js.org/gu
 npm install --save-dev webpack babel-loader babel-core babel-preset-env webpack-dev-server
 ```
 
-We can create an npm script to start webpack from inside the repository (a global installation is not recommended). The start scripts hosts our webapp, according to the devServer configuration inside webpack.config.js. The build script takes all js files (node_modules excluded), babel-transpiles them with the babel-loader, and puts them bundled into the *./dist/assets* directory. And the watch script will watch the directories for changes and starts up the loader automatically, when we saved an edit.
+We can create an npm script to start webpack from inside the repository (a global installation is not recommended). The start scripts hosts our webapp, according to the devServer configuration inside webpack.config.js. The build script takes all js files (node_modules excluded), babel-transpiles them with the babel-loader, and puts them bundled into the _./dist/assets_ directory. And the watch script will watch the directories for changes and starts up the loader automatically, when we saved an edit.
 
 ```
 "scripts": {
@@ -250,7 +251,7 @@ We can create an npm script to start webpack from inside the repository (a globa
 }
 ```
 
-We can now run our build process with *npm run build* / *npm run watch* and start our devServer with *npm start*.
+We can now run our build process with _npm run build_ / _npm run watch_ and start our devServer with _npm start_.
 
 
 Let us now use Webpack to load our react dependencies - instead of linking them into our HTML page. To do this we first have to install React to the project:
@@ -296,7 +297,7 @@ module: {
 },
 ```
 
-And create a exciting JSON file *./src/title.json* :
+And create a exciting JSON file _./src/title.json_ :
 
 ```json
 {
@@ -305,7 +306,7 @@ And create a exciting JSON file *./src/title.json* :
 }
 ```
 
-And create a JSX module that uses this data in *./src/lib.js* :
+And create a JSX module that uses this data in _./src/lib.js_ :
 
 ```js
 import React from 'react'
@@ -328,7 +329,7 @@ export const data2 = (
 )
 ```
 
-We are now using the module import statement to import React from the installed React dependency, as well as our own JSON file. This is a function that is not yet integrated in JavaScript but is available thanks to Webpack and Babel. Now we can rewrite our *./src/index.js* file to receive the module that we just created:
+We are now using the module import statement to import React from the installed React dependency, as well as our own JSON file. This is a function that is not yet integrated in JavaScript but is available thanks to Webpack and Babel. Now we can rewrite our _./src/index.js_ file to receive the module that we just created:
 
 ```js
 import React from 'react'
@@ -344,7 +345,7 @@ render(
 )
 ```
 
-Notice that we need to import *react-dom* here, since **render** is not part of *react*.
+Notice that we need to import _react-dom_ here, since __render__ is not part of _react_.
 
 
 ![](./ruth_03.png)
@@ -362,7 +363,7 @@ First we want to install the Webpack loaders for the job of preprocess the sourc
 npm install --save-dev style-loader css-loader sass-loader
 ```
 
-You will get a warning, that *sass-loader* requires another dependency called *[node-sass](https://github.com/sass/node-sass)*, which is a library that provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass. This, on the other hand, requires - **under Windows** - the installation of the [Windows Build Tools](https://github.com/felixrieseberg/windows-build-tools):
+You will get a warning, that _sass-loader_ requires another dependency called _[node-sass](https://github.com/sass/node-sass)_, which is a library that provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass. This, on the other hand, requires - __under Windows__ - the installation of the [Windows Build Tools](https://github.com/felixrieseberg/windows-build-tools):
 
 ```
 npm install --g --production windows-build-tools
@@ -397,9 +398,9 @@ Then add the [SASS loaders](https://webpack.js.org/loaders/sass-loader/) to our 
 }
 ```
 
-[Download the master.zip](https://github.com/jwebcat/kraken-sass/archive/master.zip) from kraken-sass and unzip the kraken.scss file (together with the lib folder - that contains all the scss components) to *./src/assets/sass*.
+[Download the master.zip](https://github.com/jwebcat/kraken-sass/archive/master.zip) from kraken-sass and unzip the kraken.scss file (together with the lib folder - that contains all the scss components) to _./src/assets/sass_.
 
-Now we can import the [kraken-sass styles](http://jwebcat.github.io/kraken-sass/kraken-way.html) into our *./src/index.js* component:
+Now we can import the [kraken-sass styles](http://jwebcat.github.io/kraken-sass/kraken-way.html) into our _./src/index.js_ component:
 
 ```js
 import React from 'react'
@@ -423,7 +424,7 @@ render(
 
 
 
-As we can see by now - react allows us to create a collection of separate [JSX components](https://reactjs.org/docs/components-and-props.html) and [CSS modules](https://github.com/css-modules/css-modules) that offer isolation to our app logic and component styles. Each piece is a building block that is then imported into *./src/index.js* and bundled & transpiled by Webpack/Babel into a browser-conform website. Lets clean up our folder structure to show the separation between main pages (index.js) and components and modules that can be re-used in every page (make sure to also change the relative links inside each file):
+As we can see by now - react allows us to create a collection of separate [JSX components](https://reactjs.org/docs/components-and-props.html) and [CSS modules](https://github.com/css-modules/css-modules) that offer isolation to our app logic and component styles. Each piece is a building block that is then imported into _./src/index.js_ and bundled & transpiled by Webpack/Babel into a browser-conform website. Lets clean up our folder structure to show the separation between main pages (index.js) and components and modules that can be re-used in every page (make sure to also change the relative links inside each file):
 
 
 ![](./ruth_06.png)
@@ -433,7 +434,7 @@ As we can see by now - react allows us to create a collection of separate [JSX c
 
 ## 04 React Components
 
-Let us now build a small component that list [how many countries] there are in the world, how many we have visited and how much we want to visit in total. We can also add a little bit of math to it and calculate the completion percentage of our endeavor. When you look at code examples on Github, you will find a couple of different ways to write such a component. The first, and oldest one uses the **createClass** syntax and will no longer work in react v16 - [React 15.5.0: React.createClass officially deprecated](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
+Let us now build a small component that list [how many countries] there are in the world, how many we have visited and how much we want to visit in total. We can also add a little bit of math to it and calculate the completion percentage of our endeavor. When you look at code examples on Github, you will find a couple of different ways to write such a component. The first, and oldest one uses the __createClass__ syntax and will no longer work in react v16 - [React 15.5.0: React.createClass officially deprecated](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
 
 
 ```js
@@ -609,7 +610,7 @@ export const CountriesVisitedStateless = (props) => (
 )
 ```
 
-
+To destructure this a little bit more, we can declaratively state only the object keys that we actually want to use from props - this way we don't have to add the __props.__ in front anymore:
 
 ```js
 import '../assets/sass/kraken.scss'
@@ -655,31 +656,27 @@ export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
 
 
 
+## 05 Adding React Icons
 
+The [React-Icons](http://gorangajic.github.io/react-icons/) module allows you to include popular icons in your React projects. The module can be [installed by npm](https://www.npmjs.com/package/react-icons)
 
-https://www.npmjs.com/package/react-icons
+React-Icons can be imported to our component:
 
-http://gorangajic.github.io/react-icons/go.html
+```js
+import Globe from 'react-icons/lib/go/globe'
+import Landing from 'react-icons/lib/md/flight-land'
+import Heart from 'react-icons/lib/go/heart'
+import Checked from 'react-icons/lib/ti/input-checked'
+```
 
+And simply be added to as a child component:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```js
+<Globe />
+<Landing />
+<Heart />
+<Checked />
+```
 
 
 
