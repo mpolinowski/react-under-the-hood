@@ -20,6 +20,8 @@ React is often said to be easy to learn, but impossible to set up in an dev envi
 	* [Loading JSON](#loading-json)
 	* [Adding SASS](#adding-sass)
 04. [React Components](#react-components)
+	* [ES6 Class Syntax](#ES6-class-syntax)
+	* [Stateless Functions](#stateless-functions)
 
 
 
@@ -71,7 +73,9 @@ Now we need to create a html page called /dist/index.html that contains the cont
 <body>
 	<!--[if lt IE 8]>
 					<section class="container">
-							Did you know that your web browser is a bit old? Some of the content on this site might not work right as a result. <a href="http://whatbrowser.org">Upgrade your browser</a> for a faster, better, and safer web experience.
+							Did you know that your web browser is a bit old? Some of the content on this site might not work right
+							as a result. <a href="http://whatbrowser.org">Upgrade your browser</a> for a faster, better, and safer
+							web experience.
 					</section>
 		<![endif]-->
     <div id="react-container"></div>
@@ -429,7 +433,225 @@ As we can see by now - react allows us to create a collection of separate [JSX c
 
 ## 04 React Components
 
-Let us now build a small component that list [how many countries] there are in the world, how many we have visited and how much we want to visit in total. We can also add a little bit of math to it and calculate the completion percentage of our endeavor. When you look at code examples on Github, you will find a couple of different ways to write such a component. The first, and oldest one uses the **createClass** syntax and will no longer work in react v16.
+Let us now build a small component that list [how many countries] there are in the world, how many we have visited and how much we want to visit in total. We can also add a little bit of math to it and calculate the completion percentage of our endeavor. When you look at code examples on Github, you will find a couple of different ways to write such a component. The first, and oldest one uses the **createClass** syntax and will no longer work in react v16 - [React 15.5.0: React.createClass officially deprecated](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
+
+
+```js
+import React from 'react'
+import '../assets/sass/kraken.scss'
+
+// cannot be rendered inside react 16 - you need to downgrade your react and reactDom version to react < 15.5
+
+export const CountriesVisited = React.createClass({
+	percentToDecimal(decimal) {
+		return ((decimal * 100) + '%')
+	},
+	calcGoalProgress(total, goal) {
+		return this.percentToDecimal(total/goal)
+	},
+	render() {
+		return (
+			<div className="countries-visited">
+        <hr/>
+        <h3>The React.createClass Syntax is no longer supported inside React v16!</h3>
+				<div className="total-contries">
+					<span>{this.props.total} </span>
+					<span>total countries</span>
+				</div>
+				<div className="visited">
+					<span>{this.props.powder} </span>
+					<span>visited countries</span>
+				</div>
+				<div className="wish-list">
+					<span>{this.props.backcountry} </span>
+					<span>countries on wishlist</span>
+				</div>
+				<div>
+					<span>
+						{this.calcGoalProgress(
+							this.props.total,
+							this.props.goal
+						)}
+					</span>
+				</div>
+			</div>
+		)
+	}
+})
+```
+
+Here we are working with props (properties) that are passed down from the parent component in _./src/index.js_. That means, if we want to add this component, we also have to inject those properties. If you add the following to the render function inside the parent component (see further below, on how to implement it):
+
+```js
+<CountriesVisited total={196}
+									visited={86}
+									wished={186}
+									goal={96}/>
+```
+
+and given that you are using react < v16, our component would be rendered inside our main component, just as our buttons did in the example before.
+
+Just in case that you stumble over a code bit somewhere that looks like this... Now lets bring it up to speed and rewrite the component with ES16 syntax!
+
+
+
+
+### ES6 Class Syntax
+
+```js
+export class MyComponent extends Component {
+		render() {
+			return (
+				<div>{props.title}</div>
+	    )
+	  }
+	}
+```
+
+
+```js
+import { Component } from 'react'
+import '../assets/sass/kraken.scss'
+
+export class CountriesVisitedES6 extends Component {
+  percentToDecimal (decimal) {
+    return ((decimal * 100) + '%')
+  }
+  calcTravelProgress (visited, goal) {
+    return this.percentToDecimal (visited/goal)
+  }
+  render() {
+    return (
+      <div className="countries-visited">
+        <hr/>
+        <h3>This Data is calculated inside an ES6 Class Component</h3>
+        <div className="total-contries">
+          <span>{this.props.total} </span>
+          <span>total countries</span>
+        </div>
+        <div className="visited">
+          <span>{this.props.visited} </span>
+          <span>visited countries</span>
+        </div>
+        <div className="wish-list">
+          <span>{this.props.wished} </span>
+          <span>countries on wishlist</span>
+        </div>
+        <div>
+          <span>{this.calcTravelProgress (
+                    this.props.visited,
+                    this.props.goal
+                )}
+          </span>
+          <span> Completion</span>
+        </div>
+      </div>
+    )
+  }
+}
+```
+
+One thing to point out, is that, written in this ES6 class syntax, we no longer need to wrap our component in parenthesis and the different methods inside the component don't have to be separated by commas anymore. But we can go even one step further and turned it into a Stateless functional component.
+
+
+
+
+### Stateless Functions
+
+Stateless functional component - just as their name implies - are components that are created by a function. They do not have access to state - you cannot use __this__ to access variables. They follow the following structure:
+
+```js
+const MyComponent = (props) => (
+	<div>{props.title}</div>
+)
+```
+
+They take in property information from their parent component and return (unrendered) JSX Elements to them. That means, that we also do not have to import react anymore. But local methods - like our calculations - have to be removed from the component and put into their own functions:
+
+
+```js
+import '../assets/sass/kraken.scss'
+
+const percentToDecimal = (decimal) => {
+  return ((decimal * 100) + '%')
+}
+
+const calcTravelProgress = (visited, goal) => {
+  return percentToDecimal (visited/goal)
+}
+
+export const CountriesVisitedStateless = (props) => (
+
+  <div className="countries-visited">
+    <hr/>
+    <h3>This Data is calculated inside a stateless Component</h3>
+    <div className="total-contries">
+      <span>{props.total} </span>
+      <span>total countries</span>
+    </div>
+    <div className="visited">
+      <span>{props.visited} </span>
+      <span>visited countries</span>
+    </div>
+    <div className="wish-list">
+      <span>{props.wished} </span>
+      <span>countries on wishlist</span>
+    </div>
+    <div>
+      <span>{calcTravelProgress (
+                props.visited,
+                props.goal
+            )}
+      </span>
+      <span> Completion</span>
+    </div>
+  </div>
+)
+```
+
+
+
+```js
+import '../assets/sass/kraken.scss'
+
+const percentToDecimal = (decimal) => {
+  return ((decimal * 100) + '%')
+}
+
+const calcTravelProgress = (visited, goal) => {
+  return percentToDecimal (visited/goal)
+}
+
+
+export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
+
+  <div className="countries-visited">
+    <hr/>
+    <h3>This Data is calculated inside a stateless Component</h3>
+    <div className="total-contries">
+      <span>{total} </span>
+      <span>total countries</span>
+    </div>
+    <div className="visited">
+      <span>{visited} </span>
+      <span>visited countries</span>
+    </div>
+    <div className="wish-list">
+      <span>{wished} </span>
+      <span>countries on wishlist</span>
+    </div>
+    <div>
+      <span>{calcTravelProgress (
+                visited,
+                goal
+            )}
+      </span>
+      <span> Completion</span>
+    </div>
+  </div>
+)
+```
+
 
 
 

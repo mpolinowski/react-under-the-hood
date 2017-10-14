@@ -1,7 +1,7 @@
 import React from 'react'
 import '../assets/sass/kraken.scss'
 
-// cannot be rendered inside react 16 - you need to downgrade your react and reactDom version to react 15 or smaller
+// cannot be rendered inside react 16 - you need to downgrade your react and reactDom version to react < 15.5
 
 export const CountriesVisited = React.createClass({
 	percentToDecimal(decimal) {

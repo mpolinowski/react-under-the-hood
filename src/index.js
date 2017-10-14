@@ -20,11 +20,11 @@ render (
 
 	    <button className="btn btn-blue btn-block"> {data1} </button>
 			<button className="btn btn-blue btn-block"> {data2} </button>
-
-				<CountriesVisitedES6 total={196}
-														visited={86}
-														wished={186}
-														goal={96}/>
+			
+			<CountriesVisitedES6 total={196}
+													visited={86}
+													wished={186}
+													goal={96}/>
 
   	</div>,
 	document.getElementById('react-container')
