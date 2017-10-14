@@ -15,8 +15,11 @@ React is often said to be easy to learn, but impossible to set up in an dev envi
 
 01. [Pure React](#01-pure-react)
 02. [JSX and Babel](#02-jsx-and-babel)
+	* [Transpilation](#transpilation)
 03. [Webpack](#03-webpack)
-04. []()
+	* [Loading JSON](#loading-json)
+	* [Adding SASS](#adding-sass)
+04. [React Components](#react-components)
 
 
 
@@ -142,6 +145,11 @@ render(
 
 Since our webbrowser don't understand JSX, we will have to transpile it to pure Javascript using Babel - this can be quickly done with the babel-cli transpiler. Let us first initialize our node project by *npm init -y* then install the babel-cli both globally as well as a development dependency inside our project:
 
+
+
+
+### Transpilation
+
 ```
 npm install -g babel-cli
 
@@ -247,6 +255,11 @@ Let us now use Webpack to load our react dependencies - instead of linking them 
 npm install --save react react-dom
 ```
 
+
+
+
+### Loading JSON
+
 And to demonstrate the function of module loading, we want to use some JSON data, being loaded into our react app by Webpack:
 
 ```
@@ -335,6 +348,8 @@ Notice that we need to import *react-dom* here, since **render** is not part of 
 
 
 
+### Adding SASS
+
 The same principle can be applied to add styles to our react app app - lets try to add some [SASS](http://sass-lang.com/) to our app with the [Kraken-Sass](http://jwebcat.github.io/kraken-sass/index.html) boilerplate:
 
 First we want to install the Webpack loaders for the job of preprocess the source [SASS](http://sass-lang.com/guide) into proper CSS:
@@ -404,11 +419,25 @@ render(
 
 
 
-As we can see by now - react and the Webpack/Babel dev environment is a collection of separate [JSX components](https://reactjs.org/docs/components-and-props.html) and [CSS modules](https://github.com/css-modules/css-modules) that offer isolation to our app logic and component styles. Each piece is a building block that is then imported into *./src/index.js* and bundled & transpiled into a browser-conform website. Lets clean up our folder structure accordingly (make sure to also change the relative links inside each file):
+As we can see by now - react allows us to create a collection of separate [JSX components](https://reactjs.org/docs/components-and-props.html) and [CSS modules](https://github.com/css-modules/css-modules) that offer isolation to our app logic and component styles. Each piece is a building block that is then imported into *./src/index.js* and bundled & transpiled by Webpack/Babel into a browser-conform website. Lets clean up our folder structure to show the separation between main pages (index.js) and components and modules that can be re-used in every page (make sure to also change the relative links inside each file):
 
 
 ![](./ruth_06.png)
 
+
+
+
+## 04 React Components
+
+Let us now build a small component that list [how many countries] there are in the world, how many we have visited and how much we want to visit in total. We can also add a little bit of math to it and calculate the completion percentage of our endeavor. When you look at code examples on Github, you will find a couple of different ways to write such a component. The first, and oldest one uses the **createClass** syntax and will no longer work in react v16.
+
+
+
+
+
+https://www.npmjs.com/package/react-icons
+
+http://gorangajic.github.io/react-icons/go.html
 
 
 

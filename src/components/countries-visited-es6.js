@@ -1,11 +1,5 @@
 import '../assets/sass/kraken.scss'
 
-// http://www.worldometers.info/geography/how-many-countries-are-there-in-the-world/
-
-// https://www.npmjs.com/package/react-icons
-
-// http://gorangajic.github.io/react-icons/go.html
-
 const percentToDecimal = (decimal) => {
   return ((decimal * 100) + '%')
 }
@@ -14,57 +8,33 @@ const calcTravelProgress = (visited, goal) => {
   return percentToDecimal (visited/goal)
 }
 
-export const CountriesVisited = ({ total, visited, wished, goal }) => (
+export const CountriesVisitedES6 = (props) => (
 
   <div className="countries-visited">
+    <hr/>
+    <h3>This Data is calculated inside an ES6 Class Component</h3>
     <div className="total-contries">
-      <span>{total} </span>
+      <span>{props.total} </span>
       <span>total countries</span>
     </div>
     <div className="visited">
-      <span>{visited} </span>
+      <span>{props.visited} </span>
       <span>visited countries</span>
     </div>
     <div className="wish-list">
-      <span>{wished} </span>
+      <span>{props.wished} </span>
       <span>countries on wishlist</span>
     </div>
     <div>
       <span>{calcTravelProgress (
-                visited,
-                goal
+                props.visited,
+                props.goal
             )}
       </span>
       <span> Completion</span>
     </div>
   </div>
 )
-
-// export const CountriesVisited = (props) => (
-//
-//   <div className="countries-visited">
-//     <div className="total-contries">
-//       <span>{props.total} </span>
-//       <span>total countries</span>
-//     </div>
-//     <div className="visited">
-//       <span>{props.visited} </span>
-//       <span>visited countries</span>
-//     </div>
-//     <div className="wish-list">
-//       <span>{props.wished} </span>
-//       <span>countries on wishlist</span>
-//     </div>
-//     <div>
-//       <span>{calcTravelProgress (
-//                 props.visited,
-//                 props.goal
-//             )}
-//       </span>
-//       <span> Completion</span>
-//     </div>
-//   </div>
-// )
 
 // import { Component } from 'react'
 //
