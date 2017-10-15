@@ -1,0 +1,16 @@
+@import "globals";
+
+div.app {
+  background-image: url("/assets/_flying.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+div.whoops-404 {
+  background-color: white;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

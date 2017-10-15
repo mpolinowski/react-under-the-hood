@@ -1,6 +1,7 @@
 import { Component } from 'react'
 
 import '../assets/sass/kraken.scss'
+import '../assets/sass/ui.scss'
 
 import Globe from 'react-icons/lib/go/globe'
 import Landing from 'react-icons/lib/md/flight-land'
@@ -16,32 +17,39 @@ export class CountriesVisitedES6 extends Component {
   }
   render() {
     return (
-      <div className="countries-visited">
+      <div>
         <hr/>
-        <h3>This Data is calculated inside an ES6 Class Component</h3>
-        <div className="total-contries">
+
+        <div className="grid-full space-bottom text-center">
           <span>{this.props.total} </span>
           <span>total countries </span>
-          <Globe />
+          <Globe className="text-tall" />
         </div>
-        <div className="visited">
+
+        <div className="grid-half text-center space-bottom">
           <span>{this.props.visited} </span>
           <span>visited countries </span>
-          <Landing />
+          <Landing className="text-tall" />
         </div>
-        <div className="wish-list">
+
+        <div className="grid-half space-bottom text-center">
           <span>{this.props.wished} </span>
           <span>countries on wishlist </span>
-          <Heart />
+          <Heart className="text-tall" />
         </div>
-        <div>
+
+        <div className="grid-full space-bottom text-center">
           <span>{this.calcTravelProgress (
                     this.props.visited,
                     this.props.goal
                 )}
           </span>
           <span> Completion </span>
-          <Checked />
+          <Checked className="text-tall" />
+        </div>
+
+        <div className="grid-full text-small text-muted">
+          <blockquote>This Data is calculated inside an ES6 Class Component</blockquote>
         </div>
       </div>
     )

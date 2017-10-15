@@ -1,4 +1,5 @@
 import '../assets/sass/kraken.scss'
+import '../assets/sass/ui.scss'
 
 import Globe from 'react-icons/lib/go/globe'
 import Landing from 'react-icons/lib/md/flight-land'
@@ -16,33 +17,40 @@ const calcTravelProgress = (visited, goal) => {
 
 export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
 
-  <div className="countries-visited">
+  <div>
     <hr/>
-    <h3>This Data is calculated inside a stateless Component</h3>
-    <div className="total-contries">
+
+    <div className="grid-full space-bottom text-center">
       <span>{total} </span>
-      <span>total countries </span>
-      <Globe />
+      <span> total </span>
+      <Globe className="text-tall" />
     </div>
-    <div className="visited">
+
+    <div className="grid-half text-center space-bottom">
       <span>{visited} </span>
-      <span>visited countries </span>
-      <Landing />
+      <span> visited </span>
+      <Landing className="text-tall" />
     </div>
-    <div className="wish-list">
-      <span>{wished} </span>
-      <span>countries on wishlist </span>
-      <Heart />
+
+    <div className="grid-half space-bottom text-center">
+      <span className="text-tall">{wished} </span>
+      <span> wishlist </span>
+      <Heart className="text-tall" />
     </div>
-    <div>
+
+    <div className="grid-full space-bottom text-center">
       <span>{calcTravelProgress (
                 visited,
                 goal
             )}
       </span>
-      <span> Completion </span>
-      <Checked /><br/><br/>
+      <Checked className="text-tall" /><br/><br/>
     </div>
+
+    <div className="grid-full text-small text-muted">
+      <blockquote>This Data is calculated inside a stateless Component</blockquote>
+    </div>
+
   </div>
 )
 
@@ -56,20 +64,20 @@ export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
 //
 // export const CountriesVisitedStateless = (props) => (
 //
-//   <div className="countries-visited">
-//     <div className="total-contries">
+//   <div>
+//     <div className="grid-full space-bottom text-center">
 //       <span>{props.total} </span>
 //       <span>total countries</span>
 //     </div>
-//     <div className="visited">
+//     <div className="grid-half text-center space-bottom">
 //       <span>{props.visited} </span>
 //       <span>visited countries</span>
 //     </div>
-//     <div className="wish-list">
+//     <div className="grid-half space-bottom text-center">
 //       <span>{props.wished} </span>
 //       <span>countries on wishlist</span>
 //     </div>
-//     <div>
+//     <div className="grid-full space-bottom text-center">
 //       <span>{calcTravelProgress (
 //                 props.visited,
 //                 props.goal

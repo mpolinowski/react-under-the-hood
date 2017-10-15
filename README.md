@@ -424,7 +424,7 @@ render(
 
 
 
-As we can see by now - react allows us to create a collection of separate [JSX components](https://reactjs.org/docs/components-and-props.html) and [CSS modules](https://github.com/css-modules/css-modules) that offer isolation to our app logic and component styles. Each piece is a building block that is then imported into _./src/index.js_ and bundled & transpiled by Webpack/Babel into a browser-conform website. Lets clean up our folder structure to show the separation between main pages (index.js) and components and modules that can be re-used in every page (make sure to also change the relative links inside each file):
+As we can see by now - react allows us to create a collection of separate [JSX components](https://reactjs.org/docs/components-and-props.html) and [CSS modules](https://github.com/css-modules/css-modules) that offer isolation to our app logic and component styles. Each piece is a building block, that is then imported into our _./src/index.js_ react interface and bundled & transpiled by Webpack/Babel into a browser-conform website. Lets clean up our folder structure to show the separation between main pages (index.js) and components and modules that can be re-used in every page (make sure to also change the relative links inside each file):
 
 
 ![](./ruth_06.png)
@@ -512,7 +512,9 @@ export class MyComponent extends Component {
 
 ```js
 import { Component } from 'react'
+
 import '../assets/sass/kraken.scss'
+import '../assets/sass/ui.scss'
 
 export class CountriesVisitedES6 extends Component {
   percentToDecimal (decimal) {
@@ -523,29 +525,38 @@ export class CountriesVisitedES6 extends Component {
   }
   render() {
     return (
-      <div className="countries-visited">
+      <div>
         <hr/>
-        <h3>This Data is calculated inside an ES6 Class Component</h3>
-        <div className="total-contries">
+
+        <div className="grid-full space-bottom text-center">
           <span>{this.props.total} </span>
-          <span>total countries</span>
+          <span>total countries </span>
+          <Globe className="text-tall" />
         </div>
-        <div className="visited">
+
+        <div className="grid-half text-center space-bottom">
           <span>{this.props.visited} </span>
-          <span>visited countries</span>
+          <span>visited countries </span>
+          <Landing className="text-tall" />
         </div>
-        <div className="wish-list">
+
+        <div className="grid-half space-bottom text-center">
           <span>{this.props.wished} </span>
-          <span>countries on wishlist</span>
+          <span>countries on wishlist </span>
+          <Heart className="text-tall" />
         </div>
-        <div>
+
+        <div className="grid-full space-bottom text-center">
           <span>{this.calcTravelProgress (
                     this.props.visited,
                     this.props.goal
                 )}
           </span>
-          <span> Completion</span>
+          <span> Completion </span>
+          <Checked className="text-tall" />
         </div>
+
+        <p className="text-small text-muted">This Data is calculated inside an ES6 Class Component</p>
       </div>
     )
   }
@@ -572,6 +583,7 @@ They take in property information from their parent component and return (unrend
 
 ```js
 import '../assets/sass/kraken.scss'
+import '../assets/sass/ui.scss'
 
 const percentToDecimal = (decimal) => {
   return ((decimal * 100) + '%')
@@ -583,22 +595,20 @@ const calcTravelProgress = (visited, goal) => {
 
 export const CountriesVisitedStateless = (props) => (
 
-  <div className="countries-visited">
-    <hr/>
-    <h3>This Data is calculated inside a stateless Component</h3>
-    <div className="total-contries">
+  <div>
+    <div className="grid-full space-bottom text-center">
       <span>{props.total} </span>
       <span>total countries</span>
     </div>
-    <div className="visited">
+    <div className="grid-half text-center space-bottom">
       <span>{props.visited} </span>
       <span>visited countries</span>
     </div>
-    <div className="wish-list">
+    <div className="grid-half space-bottom text-center">
       <span>{props.wished} </span>
       <span>countries on wishlist</span>
     </div>
-    <div>
+    <div className="grid-full space-bottom text-center">
       <span>{calcTravelProgress (
                 props.visited,
                 props.goal
@@ -614,6 +624,7 @@ To destructure this a little bit more, we can declaratively state only the objec
 
 ```js
 import '../assets/sass/kraken.scss'
+import '../assets/sass/ui.scss'
 
 const percentToDecimal = (decimal) => {
   return ((decimal * 100) + '%')
@@ -623,32 +634,40 @@ const calcTravelProgress = (visited, goal) => {
   return percentToDecimal (visited/goal)
 }
 
-
 export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
 
-  <div className="countries-visited">
+  <div>
     <hr/>
-    <h3>This Data is calculated inside a stateless Component</h3>
-    <div className="total-contries">
+
+    <div className="grid-full space-bottom text-center">
       <span>{total} </span>
-      <span>total countries</span>
+      <span> total </span>
+      <Globe className="text-tall" />
     </div>
-    <div className="visited">
+
+    <div className="grid-half text-center space-bottom">
       <span>{visited} </span>
-      <span>visited countries</span>
+      <span> visited </span>
+      <Landing className="text-tall" />
     </div>
-    <div className="wish-list">
-      <span>{wished} </span>
-      <span>countries on wishlist</span>
+
+    <div className="grid-half space-bottom text-center">
+      <span className="text-tall">{wished} </span>
+      <span> wishlist </span>
+      <Heart className="text-tall" />
     </div>
-    <div>
+
+    <div className="grid-full space-bottom text-center">
       <span>{calcTravelProgress (
                 visited,
                 goal
             )}
       </span>
-      <span> Completion</span>
+      <Checked className="text-tall" /><br/><br/>
     </div>
+
+    <p className="text-small text-muted">This Data is calculated inside a stateless Component</p>
+
   </div>
 )
 ```
