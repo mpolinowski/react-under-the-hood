@@ -17,9 +17,9 @@ export class CountriesVisitedES6 extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="space-top space-bottom">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <hr/>
-
         <div className="grid-full space-bottom text-center">
           <span>{this.props.total} </span>
           <span>total countries </span>

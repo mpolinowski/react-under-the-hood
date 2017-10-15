@@ -8,6 +8,7 @@ import './assets/sass/index.scss'
 
 import { CountriesVisitedStateless } from './components/countries-visited-stateless'
 import { CountriesVisitedES6 } from './components/countries-visited-es6'
+import { CountryList } from './components/country-list'
 
 window.React = React
 
@@ -24,6 +25,29 @@ render (
 
 	    <button className="btn btn-blue btn-block"> {data1} </button>
 			<button className="btn btn-blue btn-block"> {data2} </button>
+
+			<CountryList countries= {
+					[
+						{
+							country: "Germany",
+							date: new Date ("10/19/2010"),
+							visited: true,
+							liked: true
+						},
+						{
+							country: "Taiwan",
+							date: new Date ("12/12/2006"),
+							visited: true,
+							liked: true
+						},
+						{
+							country: "China",
+							date: new Date ("10/20/2010"),
+							visited: true,
+							liked: true
+						}
+					]
+				}/>
 
 			<CountriesVisitedES6 total={196}
 													visited={86}
