@@ -25,6 +25,7 @@ React is often said to be easy to learn, but impossible to set up in an dev envi
 05. [Adding React-Icons](#05-adding-react-icons)
 06. [Working with Props](#06-working-with-props)
 	* [Default Props](#default-props)
+	* [PropType Validation](#proptype-validation)
 07. [Working with State](#07-working-with-state)
 
 
@@ -927,6 +928,55 @@ CountriesVisitedES6.defaultProps = {
 	visited : propTypes.number.isRequired,
 	liked : propTypes.number,
 	goal : propTypes.number.isRequired
+}
+```
+
+We can now add Type Validation to our two list / row components:
+
+__stateless__ (see _.src/components/country-row.js_)
+
+```js
+import PropTypes from 'prop-types';
+
+[...]
+
+CountryRow.propTypes = {
+    country: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    visited: PropTypes.bool,
+    liked: PropTypes.bool,
+}
+```
+
+__stateless__ (see _.src/components/country-list.js_)
+
+```js
+import PropTypes from 'prop-types';
+
+[...]
+
+CountryList.propTypes = {
+    countries: PropTypes.array.isRequired,
+}
+```
+
+Beside those default Type Checks, we can also employ __Custom Validations__ - e.g. is _countries_ an array, or does the array _countries_ have at least 1 entry:
+
+```js
+CountryList.propTypes = {
+    countries: function(props) {
+			if(!Array.isArray(props.countries)) {
+				return new Error (
+					"Country List has to be an Array!"
+				)
+			} else if (!props.countries.length) {
+          return new Error (
+            "Country List must have at least one record!"
+          )
+      } else {
+          return null
+      }
+		}
 }
 ```
 

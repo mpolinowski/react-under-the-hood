@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Landing from 'react-icons/lib/md/flight-land'
 import Heart from 'react-icons/lib/go/heart'
 
@@ -17,3 +19,10 @@ export const CountryRow = ({country, date, visited, liked}) => (
     </td>
   </tr>
 )
+
+CountryRow.propTypes = {
+    country: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    visited: PropTypes.bool,
+    liked: PropTypes.bool,
+}

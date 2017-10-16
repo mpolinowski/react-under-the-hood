@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Landing from 'react-icons/lib/md/flight-land'
 import Heart from 'react-icons/lib/go/heart'
 
@@ -25,6 +27,21 @@ export const CountryList = ({countries}) => (
   </div>
 )
 
+CountryList.propTypes = {
+    countries: function(props) {
+			if(!Array.isArray(props.countries)) {
+				return new Error (
+					"Country List has to be an Array!"
+				)
+			} else if (!props.countries.length) {
+          return new Error (
+            "Country List must have at least one record!"
+          )
+      } else {
+          return null
+      }
+		}
+}
 
 // export const CountryList = ({countries}) => (
 //   <table>
