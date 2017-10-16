@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types';
 
 import '../assets/sass/kraken.scss'
 import '../assets/sass/ui.scss'
@@ -33,7 +34,7 @@ export class CountriesVisitedES6 extends Component {
         </div>
 
         <div className="grid-half space-bottom text-center">
-          <span>{this.props.wished} </span>
+          <span>{this.props.liked} </span>
           <span>countries on wishlist </span>
           <Heart className="text-tall" />
         </div>
@@ -54,4 +55,18 @@ export class CountriesVisitedES6 extends Component {
       </div>
     )
   }
+}
+
+CountriesVisitedES6.defaultProps = {
+    total : 196,
+    visited : 50,
+    liked : 100,
+    goal : 99
+}
+
+CountriesVisitedES6.propTypes = {
+    total : PropTypes.number.isRequired,
+    visited : PropTypes.number.isRequired,
+    liked : PropTypes.number,
+    goal : PropTypes.number.isRequired
 }

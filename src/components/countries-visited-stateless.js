@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import '../assets/sass/kraken.scss'
 import '../assets/sass/ui.scss'
 
@@ -15,7 +17,7 @@ const calcTravelProgress = (visited, goal) => {
   return percentToDecimal (visited/goal)
 }
 
-export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
+export const CountriesVisitedStateless = ({ total=196, visited=50, liked=100, goal=99 }) => (
 
   <div>
     <hr/>
@@ -33,7 +35,7 @@ export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
     </div>
 
     <div className="grid-half space-bottom text-center">
-      <span className="text-tall">{wished} </span>
+      <span className="text-tall">{liked} </span>
       <span> wishlist </span>
       <Heart className="text-tall" />
     </div>
@@ -53,6 +55,21 @@ export const CountriesVisitedStateless = ({ total, visited, wished, goal }) => (
 
   </div>
 )
+
+// CountriesVisitedStateless.defaultProps = {
+//     total : 196,
+//     visited : 50,
+//     liked : 100,
+//     goal : 99
+// }
+//
+
+CountriesVisitedStateless.propTypes = {
+    total : PropTypes.number.isRequired,
+    visited : PropTypes.number.isRequired,
+    liked : PropTypes.number,
+    goal : PropTypes.number.isRequired
+}
 
 // const percentToDecimal = (decimal) => {
 //   return ((decimal * 100) + '%')

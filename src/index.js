@@ -20,8 +20,8 @@ render (
 
 			<CountriesVisitedStateless total={196}
 																	visited={16}
-																	wished={100}
-																	goal={96}/>
+																	liked={100}
+																	goal={96} />
 
 	    <button className="btn btn-blue btn-block"> {data1} </button>
 			<button className="btn btn-blue btn-block"> {data2} </button>
@@ -29,7 +29,7 @@ render (
 			<CountryList countries= {
 					[
 						{
-							country: "Germany",
+							country: "Japan",
 							date: new Date ("10/19/2010"),
 							visited: true,
 							liked: true
@@ -51,8 +51,8 @@ render (
 
 			<CountriesVisitedES6 total={196}
 													visited={86}
-													wished={186}
-													goal={96}/>
+													liked={186}
+													goal={96} />
 
   	</div>,
 	document.getElementById('react-container')

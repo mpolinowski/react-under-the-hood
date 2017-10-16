@@ -1,9 +1,23 @@
-import React from 'react'
+import { createClass, PropTypes } from 'react'
 import '../assets/sass/kraken.scss'
 
 // cannot be rendered inside react 16 - you need to downgrade your react and reactDom version to react < 15.5
 
 export const CountriesVisited = React.createClass({
+	propTypes() {
+		total : propTypes.number,
+		visited : propTypes.number,
+		liked : propTypes.number,
+		goal : propTypes.number
+	},
+	getDefaultProps() {
+		return {
+			total : 196,
+			visited : 50,
+			liked : 100,
+			goal : 99
+		}
+	},
 	percentToDecimal(decimal) {
 		return ((decimal * 100) + '%')
 	},
@@ -20,11 +34,11 @@ export const CountriesVisited = React.createClass({
 					<span>total countries</span>
 				</div>
 				<div className="visited">
-					<span>{this.props.powder} </span>
+					<span>{this.props.visited} </span>
 					<span>visited countries</span>
 				</div>
 				<div className="wish-list">
-					<span>{this.props.backcountry} </span>
+					<span>{this.props.liked} </span>
 					<span>countries on wishlist</span>
 				</div>
 				<div>
