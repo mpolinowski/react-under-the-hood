@@ -7,8 +7,7 @@ import './assets/sass/kraken.scss'
 import './assets/sass/index.scss'
 
 import { CountriesVisitedStateless } from './components/countries-visited-stateless'
-import { CountriesVisitedES6 } from './components/countries-visited-es6'
-import { CountryList } from './components/country-list'
+import { App } from './components/app-es6'
 
 window.React = React
 
@@ -18,42 +17,16 @@ render (
 			<h1>Wanderlust</h1>
 			<h2>Countries visited & Wishlist</h2>
 
-			<CountriesVisitedStateless total={196}
-																	visited={16}
-																	liked={100}
-																	goal={96} />
+			<App />
 
 	    <button className="btn btn-blue btn-block"> {data1} </button>
 			<button className="btn btn-blue btn-block"> {data2} </button>
 
-			<CountryList countries= {
-					[
-						{
-							country: "Japan",
-							date: new Date ("10/19/2010"),
-							visited: true,
-							liked: true
-						},
-						{
-							country: "Taiwan",
-							date: new Date ("12/12/2006"),
-							visited: true,
-							liked: true
-						},
-						{
-							country: "China",
-							date: new Date ("10/20/2010"),
-							visited: true,
-							liked: true
-						}
-					]
-				}/>
+			<CountriesVisitedStateless total={196}
+																	visited={16}
+																	liked={100}
+																	goal={96} />
+		</div>,
 
-			<CountriesVisitedES6 total={196}
-													visited={86}
-													liked={186}
-													goal={96} />
-
-  	</div>,
 	document.getElementById('react-container')
 )
