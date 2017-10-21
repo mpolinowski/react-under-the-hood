@@ -27,6 +27,7 @@ React is often said to be easy to learn, but impossible to set up in an dev envi
 	* [Default Props](#default-props)
 	* [PropType Validation](#proptype-validation)
 07. [Working with State](#07-working-with-state)
+08. [The React Router](#08-the-react-router)
 
 
 
@@ -1147,12 +1148,14 @@ export class App extends Component {
 
 
 
+## 08 The React Router
 
 
+React Router uses “Dynamic Routing”, which is quite different from the “Static Routing” you’re probably more familiar with. If you’ve used Rails, Express, Ember, Angular etc. you’ve used static routing. In these frameworks, you declare your routes as part of your app’s initialization before any rendering takes place. React Router pre-v4 was also static (mostly). To be successful with React Router v4, you need to forget all that!
 
+Dynamic routing means routing that takes place as your app is rendering, not in a configuration or convention outside of a running app. That means almost everything is a component in React Router.
 
-
-
+First, we need a Router component inside the target environment in _./src/index.js_ and render it at the top of your app:
 
 
 
